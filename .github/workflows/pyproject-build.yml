@@ -24,6 +24,7 @@ jobs:
       - name: Create tag+release if not yet present
         env:
           KLIPPY_VERSION: ${{ steps.version_number.outputs.KLIPPY_VERSION }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name Klippy-Tools-Bot
           git config user.email klippy-bot@haun.guru
@@ -70,6 +71,7 @@ jobs:
       - name: upload to release
         env:
           RELEASE_NAME: ${{ needs.create_release.outputs.RELEASE_NAME }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh release upload "$RELEASE_NAME" dist/*.tar.gz --clobber
       
