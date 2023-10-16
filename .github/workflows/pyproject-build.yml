@@ -23,6 +23,8 @@ jobs:
         env:
           KLIPPY_VERSION: ${{ steps.version_number.outputs.KLIPPY_VERSION }}
         run: |
+          git config user.name Klippy-Tools-Bot
+          git config user.email klippy-bot@haun.guru
           git tag --force -am "Kilpper at $KLIPPY_VERSION" klipper-$KLIPPY_VERSION
           git push -f origin klipper-$KLIPPY_VERSION
           if ! gh release view "klipper-$KLIPPY_VERSION" >/dev/null; then
