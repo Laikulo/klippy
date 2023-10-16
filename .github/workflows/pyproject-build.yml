@@ -67,7 +67,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: sdist
-          path: dist/*.tar.gz
+          path: dist/
       - name: upload to release
         env:
           RELEASE_NAME: ${{ needs.create_release.outputs.RELEASE_NAME }}
