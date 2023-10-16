@@ -57,6 +57,8 @@ jobs:
 
   upload:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs:
       - create_release
       - build
