@@ -18,7 +18,7 @@ jobs:
       - name: Get version number
         id: version_number
         run: |
-          tee <<<"KLIPPY_VERSION=$(cat klippy/.version) -a "$GITHUB_OUTPUT"
+          tee <<<"KLIPPY_VERSION=$(cat klippy/.version)" -a "$GITHUB_OUTPUT"
       - name: Create tag+release if not yet present
         env:
           KLIPPY_VERSION: ${{ steps.version_number.outputs.KLIPPY_VERSION }}
