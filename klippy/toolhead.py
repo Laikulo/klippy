@@ -254,7 +254,7 @@ class ToolHead:
         self.extruder = extruder.DummyExtruder(self.printer)
         kin_name = config.get('kinematics')
         try:
-            mod = importlib.import_module('kinematics.' + kin_name)
+            mod = importlib.import_module('.kinematics.' + kin_name, package='klippy')
             self.kin = mod.load_kinematics(self, config)
         except config.error as e:
             raise
