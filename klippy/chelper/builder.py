@@ -5,6 +5,25 @@ from .stock_pkginit import *
 
 HC_SOURCE_DIR = '../../hub-ctrl'
 
+# Handle environment
+
+if 'CC' in os.environ:
+    GCC_CMD = os.environ['CC']
+
+if 'CFLAGS' in os.environ:
+    # Example from buildroot: -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -Os -g0 
+    COMPILE_ARGS = ( "-Wall -shared -fPIC -flto -fwhole-program -fno-use-linker-plugin "
+                     f"{os.environ['CFLAGS']} -o %s %s " )
+
+
+# Duplicated here to bring the correct GCC_CMD over
+# Check if the current gcc version supports a particular command-line option
+def check_gcc_option(option):
+    cmd = "%s %s -S -o /dev/null -xc /dev/null > /dev/null 2>&1" % (
+        GCC_CMD, option)
+    res = os.system(cmd)
+    return res == 0
+
 def build_hub_ctrl():
     srcdir = os.path.dirname(os.path.realpath(__file__))
     hubdir = os.path.join(srcdir, HC_SOURCE_DIR)
@@ -27,5 +46,7 @@ def build_chelper():
         else:
             cmd = "%s %s" % (GCC_CMD, COMPILE_ARGS)
         logging.info("Building C code module %s", DEST_LIB)
-        do_build_code(cmd % (destlib, ' '.join(srcfiles)))
+        build_cmd = cmd % (destlib, ' '.join(srcfiles))
+        logging.info(build_cmd)
+        do_build_code(build_cmd)
 
