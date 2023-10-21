@@ -14,7 +14,11 @@ if 'CFLAGS' in os.environ:
     # Example from buildroot: -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -Os -g0 
     COMPILE_ARGS = ( "-Wall -shared -fPIC -flto -fwhole-program -fno-use-linker-plugin "
                      f"{os.environ['CFLAGS']} -o %s %s " )
+    HC_CFLAGS = f"-Wall {os.environ['CFLAGS']} -o %s %s -lusb"
+else:
+    HC_CFLAGS="-Wall -g -O2 -o %s %s -lusb"
 
+HC_COMPIILE_CMD=f"{GCC_CMD} {HC_CFLAGS}"
 
 # Duplicated here to bring the correct GCC_CMD over
 # Check if the current gcc version supports a particular command-line option
