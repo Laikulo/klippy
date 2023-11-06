@@ -4,7 +4,7 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import math, logging, collections
-from .. import mathutil
+import mathutil
 from . import probe
 
 # A "stable position" is a 3-tuple containing the number of steps

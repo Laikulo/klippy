@@ -4,7 +4,7 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import collections, importlib, logging, math, multiprocessing, traceback
-shaper_defs = importlib.import_module('.shaper_defs', 'klippy.extras')
+shaper_defs = importlib.import_module('.shaper_defs', 'extras')
 
 MIN_FREQ = 5.
 MAX_FREQ = 200.
@@ -72,7 +72,7 @@ class ShaperCalibrate:
     def background_process_exec(self, method, args):
         if self.printer is None:
             return method(*args)
-        from .. import queuelogger
+        import queuelogger
         parent_conn, child_conn = multiprocessing.Pipe()
         def wrapper():
             queuelogger.clear_bg_logging()

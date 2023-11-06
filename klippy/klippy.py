@@ -5,8 +5,8 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import sys, os, gc, optparse, logging, time, collections, importlib
-from . import util, reactor, queuelogger, msgproto
-from . import gcode, configfile, pins, mcu, toolhead, webhooks
+import util, reactor, queuelogger, msgproto
+import gcode, configfile, pins, mcu, toolhead, webhooks
 
 message_ready = "Printer is ready"
 
@@ -114,7 +114,7 @@ class Printer:
             # A module is considered external to klipper if its name includes at least one dot
             module_fullname = module_name
         else:
-            module_fullname = 'klippy.extras.' + module_name
+            module_fullname = 'extras.' + module_name
             py_name = os.path.join(os.path.dirname(__file__),
                                    'extras', module_name + '.py')
             py_dirname = os.path.join(os.path.dirname(__file__),
@@ -291,7 +291,7 @@ def import_test():
                 if not os.path.exists(iname):
                     continue
                 module_name = fname
-            importlib.import_module("." + mname + '.' + module_name, package="klippy")
+            importlib.import_module(mname + '.' + module_name)
     sys.exit(0)
 
 def arg_dictionary(option, opt_str, value, parser):

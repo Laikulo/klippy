@@ -3,7 +3,7 @@
 # Copyright (C) 2018  Florian Heilmann <Florian.Heilmann@gmx.net>
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
-from .. import pins
+import pins
 from . import bus
 
 # Word registers
