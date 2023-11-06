@@ -4,7 +4,8 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import math, logging, importlib
-import mcu, chelper, kinematics.extruder
+from . import mcu, chelper
+from .kinematics import extruder
 
 # Common suffixes: _d is distance (in mm), _v is velocity (in
 #   mm/second), _v2 is velocity squared (mm^2/s^2), _t is time (in
@@ -250,7 +251,7 @@ class ToolHead:
         # Create kinematics class
         gcode = self.printer.lookup_object('gcode')
         self.Coord = gcode.Coord
-        self.extruder = kinematics.extruder.DummyExtruder(self.printer)
+        self.extruder = extruder.DummyExtruder(self.printer)
         kin_name = config.get('kinematics')
         try:
             mod = importlib.import_module('.kinematics.' + kin_name, package='klippy')
@@ -604,4 +605,4 @@ class ToolHead:
 
 def add_printer_objects(config):
     config.get_printer().add_object('toolhead', ToolHead(config))
-    kinematics.extruder.add_printer_objects(config)
+    extruder.add_printer_objects(config)
