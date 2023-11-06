@@ -72,7 +72,7 @@ class ShaperCalibrate:
     def background_process_exec(self, method, args):
         if self.printer is None:
             return method(*args)
-        from .. import queuelogger
+        import queuelogger
         parent_conn, child_conn = multiprocessing.Pipe()
         def wrapper():
             queuelogger.clear_bg_logging()

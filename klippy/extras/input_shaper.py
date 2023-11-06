@@ -5,7 +5,7 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import collections
-from .. import chelper
+import chelper
 from . import shaper_defs
 
 class InputShaperParams:
