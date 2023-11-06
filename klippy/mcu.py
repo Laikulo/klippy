@@ -4,7 +4,7 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import sys, os, zlib, logging, math
-import serialhdl, msgproto, pins, chelper, clocksync
+from . import serialhdl, msgproto, pins, chelper, clocksync
 
 class error(Exception):
     pass
