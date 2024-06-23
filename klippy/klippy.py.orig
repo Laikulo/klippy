@@ -94,7 +94,7 @@ class Printer:
         module_name = module_parts[0]
         if '.' in module_name:
             # A module is considered external to klipper if its name includes at least one dot
-            module_fullname = module_name
+            module_fullname = module_name.rstrip('.')
         else:
             module_fullname = 'extras.' + module_name
             py_name = os.path.join(os.path.dirname(__file__),
