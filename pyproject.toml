@@ -32,12 +32,13 @@ klipper-klippy = "klippy.klippy:main"
 klipper_klippy = "klippy.klippy:main"
 
 [tool.setuptools.dynamic]
-version = { file = "klippy/.version" }
+version = { file = ".py_version" }
 
 [tool.setuptools.packages.find]
 include = [
  "klippy",
  "klippy.*",
+ "build_data"
 ]
 
 [tool.setuptools.package-data]
