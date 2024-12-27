@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.name Klippy-Tools-Bot
           git config user.email klippy-bot@haun.guru
-          git tag --force -am "Kilpper at $KLIPPY_VERSION" klipper-$KLIPPY_VERSION
+          git tag --force -am "Klipper at $KLIPPY_VERSION" klipper-$KLIPPY_VERSION
           git push -f origin klipper-$KLIPPY_VERSION
           if ! gh release view "klipper-$KLIPPY_VERSION" >/dev/null; then
             gh release create "klipper-$KLIPPY_VERSION"
